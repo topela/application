@@ -4,7 +4,7 @@ const h = require("hyperscript");
 const randomColor = require("randomcolor");
 const faker = require("faker");
 const wifiPassword = require("wifi-password");
-const movuinojs = require("movuino.js");
+const movuinojs = require("movuino");
 const os = require("os");
 
 const sounds = require("./lib/sounds");
