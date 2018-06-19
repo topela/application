@@ -18,7 +18,7 @@ function onError(err) {
 movuinojs.listen();
 
 movuinojs.on("error", onError);
-window.onerror = onError;
+window.addEventListener("error", onError);
 
 movuinojs.on("movuino", async movuino => {
   movuino.color = randomColor({
@@ -40,6 +40,13 @@ movuinojs.on("movuino", async movuino => {
   movuino.on("error", onError);
 
   movuino.on("plugged", async () => {
+    try {
+      await movuino.attachSerial();
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+
     sounds.on();
     movuino.plugged = true;
     movuino.el.querySelector(".plugged").hidden = false;

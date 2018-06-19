@@ -5,6 +5,7 @@
   "description": "Motion sensing for everybody.",
   "main": "main.js",
   "scripts": {
+    "postinstall": "electron-rebuild",
     "start": "electron .",
     "test": "eslint .",
     "rebuild": "electron-rebuild"
@@ -12,26 +13,26 @@
   "repository": "github:topela/desktop",
   "license": "GPL-3.0",
   "dependencies": {
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "4.1.1",
     "faker": "^4.1.0",
     "hyperscript": "^2.0.2",
     "midi": "^0.9.5",
-    "movuino": "^1.0.0",
+    "movuino": "^1.1.1",
     "randomcolor": "^0.5.3",
-    "smoothie": "^1.33.0",
+    "smoothie": "^1.35.0",
     "wifi-password": "^3.0.1"
   },
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "1.8.1",
-    "electron-debug": "^1.4.0",
-    "electron-rebuild": "^1.5.11",
-    "eslint": "^4.13.0",
+    "electron": "2.0.2",
+    "electron-debug": "^2.0.0",
+    "electron-rebuild": "^1.7.3",
+    "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-config-xo": "^0.19.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "^2.2.0",
-    "eslint-plugin-unicorn": "^3.0.0",
-    "prettier": "^1.9.1"
+    "eslint-config-xo": "^0.22.2",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-unicorn": "^4.0.3",
+    "prettier": "^1.13.5"
   }
 }
