@@ -3,11 +3,15 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS
+} = require("electron-devtools-installer");
 
 // prevents app ready event to be fired on OS X
 // process.title = "Movuino";
 
-require("electron-debug")({ showDevTools: true });
+// require("electron-debug")({ showDevTools: true });
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,6 +22,10 @@ function createWindow() {
     show: false,
     autoHideMenuBar: true
   });
+
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then(name => console.log(`Added Extension:  ${name}`))
+    .catch(err => console.log("An error occurred: ", err));
 
   // And load the index.html of the app.
   mainWindow.loadURL(

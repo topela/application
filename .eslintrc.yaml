@@ -2,25 +2,33 @@ env:
   node: true
   browser: true
 
+parserOptions:
+  sourceType: script
+  ecmaFeatures:
+    jsx: true
+
 plugins:
   - node
   - unicorn
-  - prettier
 
 extends:
   - eslint:recommended
+  - plugin:react/recommended
   - plugin:unicorn/recommended
   - plugin:node/recommended
   - xo/esnext
   - xo/browser
-  - prettier
+  - plugin:prettier/recommended
+  - prettier/react
 
 rules:
-  indent: [error, 2]
-  quotes: [error, double]
+  capitalized-comments: 0
   no-console: 0
+  strict: [2, global]
+  # react https://github.com/yannickcr/eslint-plugin-react
+  react/prop-types: 0
   # unicorn https://github.com/sindresorhus/eslint-plugin-unicorn
   unicorn/filename-case: 0
   # node https://github.com/mysticatea/eslint-plugin-node
-  node/no-unpublished-require: [error, {allowModules: [electron]}]
+  node/no-unpublished-require: [error, {allowModules: [electron, electron-debug, electron-devtools-installer]}]
   node/no-unsupported-features: [error, {version: 8}]

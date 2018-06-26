@@ -8,7 +8,7 @@ body {
   background-color: #47cc97;
 }
 
-.main {
+#root {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -33,11 +33,9 @@ body {
   border-radius: 50%;
   box-sizing: border-box;
   border: solid lightgrey 10px;
-}
-
-.circle {
   transition: all 0.2s ease-in-out;
 }
+
 /*.circle:hover { transform: scale(0.1); }*/
 
 .movuino {
