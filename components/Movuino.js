@@ -88,30 +88,56 @@ module.exports = class Movuino extends React.Component {
     return (
       <div
         {...attrs}
-        className={`circle movuino ${isOpen && "big"}`}
         style={{
+          zIndex: isOpen ? "99" : "0",
+          width: isOpen ? "100vmin" : "100px",
+          height: isOpen ? "100vmin" : "100px",
+          position: isOpen ? "fixed" : "absolute",
+          cursor: isOpen ? "default" : "pointer",
+          top: isOpen ? "0" : this.props.style.top,
+          left: isOpen ? "calc((100% - 100vmin) / 2)" : this.props.style.left,
           backgroundColor: color,
           opacity: online || plugged ? "1" : "0",
-          zIndex: isOpen ? "99" : "0"
-          // top: `${rest + this.y}px`,
-          // left: `${rest + circle.offsetLeft + this.x}px`
+          fontSize: "12px",
+          overflow: "hidden",
+          boxSizing: "border-box",
+          borderRadius: "50%",
+          transition: "all 0.4s ease-in-out",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
         }}
       >
-        <img
-          onClick={() => this.close()}
-          className="close-button"
-          src="./images/close.png"
-          hidden={true}
-        />
-        <div className="status">
-          <h1 className="title">{name}</h1>
+        {isOpen && (
+          <img
+            style={{
+              width: "64px",
+              cursor: "pointer",
+              bottom: "10px",
+              position: "absolute"
+            }}
+            onClick={() => this.close()}
+            className="close-button"
+            src="./images/close.png"
+          />
+        )}
+        <div style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "14px", fontWeight: "bold" }}>{name}</h1>
           <span
             hidden={!online}
             className="range"
           >{`Ranges: ${accel} / ${gyro}`}</span>
           <div className="status">
-            <img className="plugged" src="./images/usb.png" hidden={!plugged} />
-            <img className="plugged" src="./images/wifi.png" hidden={!online} />
+            <img
+              style={{ height: "18px" }}
+              src="./images/usb.png"
+              hidden={!plugged}
+            />
+            <img
+              style={{ height: "18px" }}
+              src="./images/wifi.png"
+              hidden={!online}
+            />
             <span hidden={!online} className="rate">{`${rate}m/s`}</span>
           </div>
         </div>

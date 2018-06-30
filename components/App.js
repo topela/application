@@ -34,9 +34,25 @@ module.exports = class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Circle>
-          {this.state.movuinos.map(movuino => (
+        <h1
+          style={{
+            position: "fixed",
+            left: "10px",
+            top: "10px",
+            cursor: "pointer",
+            color: "white"
+          }}
+        >
+          Movuino
+        </h1>
+
+        <Configuration movuinos={this.state.movuinos} />
+
+        <Circle
+          data={this.state.movuinos}
+          renderItem={(movuino, style) => (
             <Movuino
+              style={style}
               onOpen={() => {
                 graph.start(movuino);
                 this.setState({ movuino });
@@ -48,14 +64,26 @@ module.exports = class App extends React.Component {
               key={movuino.id}
               movuino={movuino}
             />
-          ))}
-        </Circle>
+          )}
+        />
         <img
-          className="axes"
+          style={{
+            position: "fixed",
+            left: "10px",
+            bottom: "10px"
+          }}
           hidden={!this.state.movuino}
           src="./images/3d.svg"
         />
-        <Configuration movuinos={this.state.movuinos} />
+        {/* <div
+          style={{
+            position: "fixed",
+            bottom: "10px",
+            right: "10px"
+          }}
+        >
+          <img style={{ cursor: "pointer" }} src="./images/mute.png" />
+        </div> */}
       </React.Fragment>
     );
   }

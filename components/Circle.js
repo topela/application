@@ -14,22 +14,16 @@ const React = require("react");
 //   document.body.appendChild(div)
 // })
 
-// function drawMovuino(movuino) {
-//   const [x, y] = positions.shift();
-
-//   const style = {
-//     top: `${rest + y}px`,
-//     left: `${rest + circle.offsetLeft + x}px`
-//   };
-// }
-
 module.exports = class Circle extends React.Component {
   constructor(...args) {
     super(...args);
-    this.state = { positions: null };
+    this.positions = [];
+    this.mounted = false;
   }
 
   componentDidMount() {
+    if (this.mounted) return;
+
     const circle = this.ref;
     this.offsetLeft = circle.offsetLeft;
     const diameter = circle.clientHeight;
@@ -43,21 +37,7 @@ module.exports = class Circle extends React.Component {
     const gridSide = diameter / Math.sqrt(2);
     this.rest = (diameter - gridSide) / 2;
 
-    // Debug
-    // const div = document.createElement('div')
-    // div.style.width = `${gridSide}px`
-    // div.style.height = `${gridSide}px`
-    // div.style['background-color'] = 'red'
-    // div.style.position = 'fixed'
-    // div.style.left = `${rest + circle.offsetLeft}px`
-    // div.style.top = `${rest}px`
-    // document.body.appendChild(div)
-    // const square = height / slices;
-    // const height = circle.clientHeight;
-
     const slices = Math.floor(gridSide / movuinoSide);
-
-    const positions = [];
 
     let row = 0;
     let col = 0;
@@ -75,7 +55,7 @@ module.exports = class Circle extends React.Component {
         n = 0;
       }
 
-      positions.push([x, y]);
+      this.positions.push([x, y]);
     }
 
     function shuffle(a) {
@@ -85,42 +65,36 @@ module.exports = class Circle extends React.Component {
       }
     }
 
-    shuffle(positions);
-    this.setState({ positions });
-  }
-
-  shouldComponentUpdate() {
-    return this.props.children.length === 0;
+    shuffle(this.positions);
+    this.mounted = true;
   }
 
   render() {
-    console.log("render");
-    const { children } = this.props;
-    const { positions } = this.state;
-    const { rest, offsetLeft } = this;
+    const { data, renderItem } = this.props;
+    const { rest, offsetLeft, positions } = this;
     return (
       <div
         className="circle"
+        style={{
+          backgroundColor: "lightyellow",
+          width: "100vmin",
+          height: "100vmin",
+          borderRadius: "50%",
+          boxSizing: "border-box",
+          border: "solid lightgrey 10px",
+          transition: "all 0.2s ease-in-out"
+        }}
         ref={_ => {
           this.ref = _;
         }}
       >
         {positions &&
-          children.map((child, idx) => {
+          data.map(item => {
             const [x, y] = positions.shift();
-
-            return (
-              <div
-                style={{
-                  position: "absolute",
-                  top: `${rest + y}px`,
-                  left: `${rest + offsetLeft + x}px`
-                }}
-                key={idx}
-              >
-                {child}
-              </div>
-            );
+            return renderItem(item, {
+              top: `${rest + y}px`,
+              left: `${rest + offsetLeft + x}px`
+            });
           })}
       </div>
     );

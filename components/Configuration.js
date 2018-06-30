@@ -76,7 +76,15 @@ module.exports = class Configuration extends React.Component {
     const { hide, host, ssid, ready } = this.state;
 
     return (
-      <form onSubmit={evt => this.onSubmit(evt)} className="configuration">
+      <form
+        onSubmit={evt => this.onSubmit(evt)}
+        style={{
+          position: "fixed",
+          top: "10px",
+          right: "10px",
+          color: "white"
+        }}
+      >
         <fieldset disabled={!ready}>
           <div className="form-group">
             <label htmlFor="ssid">WiFi name</label>
