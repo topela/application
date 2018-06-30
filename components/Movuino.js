@@ -123,10 +123,12 @@ module.exports = class Movuino extends React.Component {
         )}
         <div style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "14px", fontWeight: "bold" }}>{name}</h1>
-          <span
-            hidden={!online}
-            className="range"
-          >{`Ranges: ${accel} / ${gyro}`}</span>
+          {isOpen && (
+            <div
+              hidden={!online}
+              className="range"
+            >{`Ranges: ${accel} / ${gyro}`}</div>
+          )}
           <div className="status">
             <img
               style={{ height: "18px" }}
@@ -138,8 +140,10 @@ module.exports = class Movuino extends React.Component {
               src="./images/wifi.png"
               hidden={!online}
             />
-            <span hidden={!online} className="rate">{`${rate}m/s`}</span>
           </div>
+          {isOpen && (
+            <div hidden={!online} className="rate">{`${rate}m/s`}</div>
+          )}
         </div>
       </div>
     );
