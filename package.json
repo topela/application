@@ -21,8 +21,7 @@
     "randomcolor": "^0.5.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "smoothie": "^1.35.0",
-    "wifi-password": "^3.0.1"
+    "smoothie": "^1.35.0"
   },
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.24.1",

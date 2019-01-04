@@ -1,7 +1,6 @@
 "use strict";
 
 const React = require("react");
-const wifiPassword = require("wifi-password");
 const os = require("os");
 const movuino = require("movuino");
 
@@ -58,16 +57,6 @@ module.exports = class Configuration extends React.Component {
       host,
       password: ""
     });
-
-    if (["darwin", "win32"].includes(os.platform())) {
-      // Linux requires sudo
-      try {
-        const password = await wifiPassword(ssid);
-        this.setState({ password });
-      } catch (err) {
-        console.error(err);
-      }
-    }
 
     this.setState({ ready: true });
   }
