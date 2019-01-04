@@ -8,6 +8,8 @@ const {
   REACT_DEVELOPER_TOOLS
 } = require("electron-devtools-installer");
 
+app.commandLine.appendSwitch('--autoplay-policy', 'no-user-gesture-required')
+
 // prevents app ready event to be fired on OS X
 // process.title = "Movuino";
 
